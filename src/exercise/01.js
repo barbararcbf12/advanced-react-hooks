@@ -3,19 +3,25 @@
 
 import * as React from 'react'
 
-const countReducer = (state, step) => state + step
+const countReducer = (state, newState) => newState
 
 function Counter({initialCount = 0, step = 1}) {
-/*Extra credit 1
+/*Extra credit 2
 Change the code as stated below and edit the countReducer in a way that
 the counter continue working as supposed to:
-* const [count, changeCount] = React.useReducer(countReducer, initialCount)
-* const increment = () => changeCount(step)
+ const [state, setState] = React.useReducer(countReducer, {
+  count: initialCount,
+})
+ const {count} = state
+ const increment = () => setState({count: count + step})
 * */
 
-  const [count, changeCount] = React.useReducer(countReducer, initialCount)
+  const [state, setState] = React.useReducer(countReducer, {
+    count: initialCount,
+  })
+  const {count} = state
+  const increment = () => setState({count: count + step})
 
-  const increment = () => changeCount(step)
   return <button onClick={increment}>{count}</button>
 }
 
