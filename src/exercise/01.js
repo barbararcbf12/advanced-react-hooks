@@ -12,7 +12,7 @@ const countReducer = (state, newState) => {
     case 'INCREMENT':
       return {...state, count: state.count + step}
     default:
-      return state
+      throw new Error(`Unsupported action type: ${type}`)
   }
 }
 
