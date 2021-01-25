@@ -55,6 +55,8 @@ function useAsync(initialState){
     ...initialState
   })
 
+  const dispatch = useSafeDispatch(useSafeDispatch)
+
   const run = React.useCallback(promise => {
     dispatch({type: 'pending'})
     promise.then(
@@ -65,18 +67,12 @@ function useAsync(initialState){
         dispatch({type: 'rejected', error})
       },
     )
-  }, [])
+  }, [dispatch])
 
   return {...state, run}
 }
 
 function PokemonInfo({pokemonName}) {
-
-  /*const state = useAsync(
-    asyncCallback,
-     {status: pokemonName ? 'pending' : 'idle'},
-     [pokemonName],
-  )*/
 
   const {data: pokemon, status, error, run} = useAsync({
     status: pokemonName ? 'pending' : 'idle',
