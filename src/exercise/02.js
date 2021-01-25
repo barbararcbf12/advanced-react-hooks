@@ -55,7 +55,7 @@ function useAsync(initialState){
     ...initialState
   })
 
-  const dispatch = useSafeDispatch(useSafeDispatch)
+  const dispatch = useSafeDispatch(unsafeDispatch)
 
   const run = React.useCallback(promise => {
     dispatch({type: 'pending'})
